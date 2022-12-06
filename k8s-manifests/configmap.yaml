@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: telegram-support-bot-config
+data:
+  config.yaml: "# bot settings\r\nbot_token: '1358331397:AAF70r1UklpagRlmWadMtFqcY7lE77UyyMY'
+    # support bot token\r\nstaffchat_id: 'SUPERGROUP_CHAT_ID' # eg. -123456789\r\nowner_id:
+    '293681227'\r\nspam_time: 300000 # time (in MS) in which user may send 5 messages\r\nspam_cant_msg:
+    5\r\n\r\nparse_mode: 'MarkdownV2' # Experimental. Do not change unless you know
+    what you are doing. Options: Markdown/MarkdownV2/HTML\r\n\r\nallow_private: false
+    # Allow / disallow option for staff to chat privately\r\ndirect_reply: false #
+    Set this to true to just forward staff users to a user chat when allow_private\r\nauto_close_tickets:
+    true # Close tickets after answering\r\nanonymous_tickets: true # Include userid
+    in tickets or not\r\nanonymous_replies: true # Include staff member name in response\r\nshow_auto_replied:
+    false # Send auto replied msgs to staff chat\r\nshow_user_ticket: false # Show
+    ticket id to user\r\nautoreply_confirmation: true # Reply with language.confirmationMessage
+    on each incoming message\r\nclean_replies: false # Remove footer and header from
+    response\r\npass_start: false # Pass /start command to support directly\r\n\r\nsignal_enabled:
+    false # Enable/disable signal\r\nsignal_number: '+12345689' # Your signal number
+    / account\r\n\r\nweb_server: false # Enable/disable web server\r\nweb_server_port:
+    8080 # Port for web server\r\n\r\ndev_mode: true # Enable/disable dev mode\r\n\r\n#
+    customize your language\r\nlanguage:\r\n  startCommandText: 'sWelcome in our support
+    chat! Ask your question here.'\r\n  faqCommandText: 'Get this bot at: [github.com](https://github.com/bostrot/telegram-support-bot)'\r\n
+    \ helpCommandText: \"*Available commands:* /help /faq /id\"\r\n  helpCommandStaffText:
+    \"*Available commands:* \r\n    /start - Get a little introduction \r\n    /faq
+    - Show frequently asked questions \r\n    /open - *Staff* Shows a list of open
+    tickets \r\n    /reopen - *Staff* Reopen a closed ticket \r\n    /close - *Staff*
+    Reply to a ticket with this to close and unban \r\n    /clear - *Staff* Closes
+    all tickets \r\n    /ban - *Staff* Ban a user from the chat \r\n    /unban - *Staff*
+    Unban a user\"\r\n  confirmationMessage: \"Thank you for contacting us. We will
+    answer as soon as possible. \"\r\n  blockedSpam: 'You sent quite a number of questions
+    in the last while. Please calm down and wait until staff reviews them.'\r\n  ticket:
+    'Ticket'\r\n  closed: 'closed'\r\n  acceptedBy: 'was accepted by'\r\n  dear: 'Hi'\r\n
+    \ regards: 'Regards,'\r\n  from: 'from'\r\n  language: 'Language'\r\n  msg_sent:
+    'Message sent to user'\r\n  file_sent: 'File sent to user'\r\n  usr_with_ticket:
+    'User with ticket'\r\n  banned: 'banned'\r\n  replyPrivate: 'Reply in private'\r\n
+    \ services: 'Select a service from the list below'\r\n  customer: 'customer'\r\n
+    \ msgForwarding: 'You messages will now be forwarded to vendors of the group:
+    '\r\n  back: 'Go back'\r\n  whatSubCategory: 'Which subcategory describes your
+    needs the best? '\r\n  prvChatEnded: 'Private chat ended.'\r\n  prvChatOpened:
+    'Private Chat opened with customer.'\r\n  prvChatEnd: 'End Private chat'\r\n  prvChatOpenedCustomer:
+    'Opened private chat'\r\n  instructionsSent: 'Instructions were sent to you in
+    private chat.'\r\n  openTickets: 'Open Tickets'\r\n  support: 'Support'\r\n  prvChatOnly:
+    'This command can be used in private chat only.'\r\n  ticketClosed: 'Your ticket
+    was closed by our staff. You can open a new ticket at any time.'\r\n  links: 'Direct
+    support links'\r\n  textFirst: 'Please send us a message before sending an image
+    so that we can help you better.'\r\n  ticketClosedError: 'You cannot reply to
+    a closed ticket.'\r\n  automatedReply: 'This is an automated reply.'\r\n  automatedReplyAuthor:
+    'BottyBot.'\r\n  doesntHelp: 'This does not help.'\r\n  automatedReplySent: 'Automated
+    reply was send to the user.'\r\n  ticketReopened: 'Ticket reopened.'\r\n  regardsGroup:
+    'Botty Group'\r\n\r\nautoreply:\r\n  - question: 'install'\r\n    answer: \"If
+    you want to install the bot, you can use the following link: \\\r\n      [Getting
+    Started](https://github.com/bostrot/telegram-support-bot/wiki/Getting-started)
+    \ \\\r\n      Alternatively you can also use our one-click setup & hosting service:
+    \\\r\n      [Botspace](https://botspace.bostrot.com/)\"\r\n  - question: 'are
+    you sure?'\r\n    answer: 'Yes.'\r\n# categories:\r\n#  - name: \"Category1\"\r\n#
+    \   subgroups:\r\n#    - name: \"Sub1\"\r\n#      group_id: \"-12345678910\"\r\n#
+    \   - name: \"Sub2\"\r\n#      group_id: \"-12345678910\"\r\n#    - name: \"Sub3\"\r\n#
+    \     group_id: \"-12345678910\"\r\n#  - name: \"Category2\"\r\n#    subgroups:\r\n#
+    \   - name: \"Sub4\"\r\n#      group_id: \"-12345678910\"\r\n#    - name: \"Sub5\"\r\n#
+    \     group_id: \"-12345678910\"\r\n#    - name: \"Sub6\"\r\n#      group_id:
+    \"-12345678910\"\r\n#  - name: \"Category with no subcategories\"\r\n#    group_id:
+    \"-12345678910\"\r\n#  - name: \"Admin Chat\"\r\n#    group_id: \"-12345678910\"\r\n#
+    \ - name: \"Contact\"\r\n#    msg: \"Check out our Website\"\r\n\r\n"

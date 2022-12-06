@@ -1,0 +1,63 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: telegram-support-bot-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telegram-support-bot
+  labels:
+    app: telegram-support-bot
+spec:
+  selector:
+    matchLabels:
+      app: telegram-support-bot
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: telegram-support-bot
+    spec:
+      initContainers:
+      - name: init-permissions
+        image: busybox:1.28
+        command: ['sh', '-c', "cp /bot/configfile/config.yaml /bot/config"]
+        volumeMounts:
+        - mountPath: /bot/config
+          name: telegram-support-bot-vol
+        - mountPath: "/bot/configfile"
+          name: configyaml
+      containers:
+      - image: aminaleahmad/telegram-support-bot:v1
+        name: telegram-support-bot
+        volumeMounts:
+        # - mountPath: "/bot/config/"
+        #   name: configyaml
+        - mountPath: /bot/config
+          name: telegram-support-bot-vol
+      volumes:
+      - name: configyaml
+        configMap:
+          name: telegram-support-bot-config
+      - name: telegram-support-bot-vol
+        persistentVolumeClaim:
+          claimName: telegram-support-bot-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: telegram-support-bot
+spec:
+  ports:
+    - port: 8080
+  selector:
+    app: telegram-support-bot
+  type: LoadBalancer
